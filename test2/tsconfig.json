@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {  // 编译选项
+    "target": "es2016", // 配置编译目标代码的版本标准
+    "module": "commonjs", // 配置编译目标使用的模块化标准
+    "lib": ["es2016", "DOM"],  //
+    "outDir": "./dist", // 编译输出的目录
+    "strictNullChecks": true, // 尽可能的鼓励使用，检查null,undefined
+  },
+  "include": ["./src"],  // 默认是整个工程下，配置你要编译的指定目录下的ts文件
+  // "files": ["./src/index.ts"]
+
+}
