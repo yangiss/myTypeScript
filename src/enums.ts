@@ -20,3 +20,4 @@ export enum Mark {
     twelve = "Q",
     king = "K"
 }
+
