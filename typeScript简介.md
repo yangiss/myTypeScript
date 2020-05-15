@@ -166,6 +166,27 @@ type 类型名 = ...
 ```
 
 
+举个栗子：
+定义一个 用户的类型， 因为用户这个类型有可能很多地方都会用到，所以单独定义出来，方便后面使用。
+
+```
+type User = {
+    name: string
+    age: number
+    gender: "男"|"女"
+}
+
+let u:User
+
+function getUsers():User[] {
+    return [];
+}
+
+// getUser返回值为一个数组类型，并且每一项为 User;
+
+```
+
+
 - ? 表示可选参数
 ```
 function sum(a: number, b: number, c?: number) {
@@ -203,7 +224,6 @@ TS是一个静态的可选的类型系统。
 
 # 位枚举（扩展）
 
-我从小，便有一个毛病。小时候放学做完作业就在外面玩，不愿意等我的弟弟。
 
 
 
@@ -220,4 +240,96 @@ import fs = require("fs")
 
 import * as fs from 'fs'
 ```
+
+
+
+> 扩展类型： 类型别名、枚举、接口、类
+
+# TypeScript的接口： 用于约束类、对象、函数的契约（标准）
+
+
+和类型别名一样， 接口不出现在编译结果中
+
+1. 接口约束对象
+
+2. 接口约束函数
+    > 举个栗子
+    ```
+    interface Condition {
+        (n: number): boolean
+    }
+    ```
+
+**接口可以继承**
+
+可以通过接口之间的继承，实现多种接口的组合
+```
+// 接口的继承  interface
+interface A {
+    T1: string
+}
+
+interface B extends A {
+    T2: number
+}
+
+let u:B = {
+    T2: 33,
+    T1: 'sss'
+}
+```
+
+使用类型别名可以实现类似的组合效果， 需要通过`&`, 它叫做交叉类型
+```
+// type 类型别名能不能实现 interface 继承的功能 ？
+type X = {
+    T1:string
+}
+type Y = {
+    T2:number
+}
+type Z = {
+    T3:boolean
+} & X & Y
+
+let h: Z = {
+    T2: 33,
+    T1: "asd",
+    T3: true
+}
+```
+
+
+它们的区别：
+- 子接口不能覆盖父接口的成员
+- 交叉类型会把相同成员的类型进行交叉
+```
+// 当使用交叉时， T1会获得字符串和number的共同方法。
+type X = {
+    T1:string
+}
+type Y = {
+    T2:number
+}
+type Z = {
+    T1: number
+    T3:boolean
+} & X & Y
+
+let h: Z = {
+    T2: 33,
+    T1: "asd",
+    T3: true
+}
+```
+
+### readonly
+```
+let arr: readonly number[] = [3, 4, 6];
+arr.push  // 你会发现arr没有了push,这些方法。 
+arr = [4, 5, 6, 7];
+
+// 限制该数组为只读数组，不能进行改变。 但不影响编译后的结果。 编译后的： let arr = [3, 4, 6];
+```
+
 
