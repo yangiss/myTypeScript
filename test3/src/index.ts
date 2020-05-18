@@ -219,5 +219,36 @@ arr = [4, 5, 6, 7];
 
 
 
-// type 
+// 类型兼容性
 
+interface Duck {
+    sound: "嘎嘎嘎"
+    swin(): void
+}
+
+let person = {
+    name: "伪装成鸭子的人",
+    age: 11,
+    sound: "嘎嘎嘎" as "嘎嘎嘎",  //类型断言
+    swin() {
+        console.log(this.name + `正在游泳，并发出了  ${this.sound}  的声音`)
+    }
+}
+
+let duck: Duck = person;
+
+
+interface ResponseUser {
+    loginId: string
+    nickName: string
+    gender: "男" | "女"
+}
+
+// let duck: Duck = person;
+
+
+// ? 表示该属性可以有，可以没有。可选参数
+interface User {
+    name?: string
+    age: number
+}
