@@ -351,9 +351,47 @@ B->A, 如果能完成赋值， 则B和A类型兼容
 - 基本类型：完全匹配
 - 对象类型：鸭子辨型法
 
+
+
+
+
 类型断言
 
-当
+```
+interface Duck {
+    sound: "嘎嘎嘎"
+    swin(): void
+}
+
+let person = {
+    name: "伪装成鸭子的人",
+    age: 11,
+    sound: "嘎嘎嘎" as "嘎嘎嘎",  //类型断言   为什么会这样，因为这里是一个字面量是在赋值，不是在类型约束
+    swin() {
+        console.log(this.name + `正在游泳，并发出了  ${this.sound}  的声音`)
+    }
+}
+
+let duck: Duck = person;
+
+let aa: Duck = {
+    sound: "嘎嘎嘎",
+    swin(){
+        
+    }
+}
+
+let bb = {
+    sound: "嘎嘎嘎",
+    swin(){
+        
+    }
+}
+
+let cc: Duck = bb;  // 更严格的类型检查，sound被认为是一个字符串。
+```
+
+
 
 
 ```

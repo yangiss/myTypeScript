@@ -13,3 +13,9 @@
 4. 用接口改造程序，加入大小王
 
 5. 用类改造程序
+
+
+### Compiles and hot-reloads for development
+```
+npm run dev
+```
