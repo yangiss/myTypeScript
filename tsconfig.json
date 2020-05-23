@@ -1,11 +1,17 @@
+
 {
   "compilerOptions": { //编译选项
       "target": "es2016", //配置编译目标代码的版本标准
       "module": "commonjs", //配置编译目标使用的模块化标准
-      "lib": ["es2016"],  
+      "lib": ["es2016"],
       "outDir": "./dist",
       "strictNullChecks": true,
-      "strictPropertyInitialization": true
+      "removeComments": true,  // 编译结果移除注释
+      "noImplicitUseStrict": true,
+      "esModuleInterop":true,  // 启用es模块化交互非es模块导出
+      "noEmitOnError":true,
+      "moduleResolution":"node",
+      "strictPropertyInitialization": true, // 严格的属性初始化 赋值
   },
   "include": ["./src"]
 }
