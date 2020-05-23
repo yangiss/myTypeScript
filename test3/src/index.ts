@@ -219,7 +219,7 @@ arr = [4, 5, 6, 7];
 
 
 
-// 类型兼容性
+/* // 类型兼容性
 
 interface Duck {
     sound: "嘎嘎嘎"
@@ -251,4 +251,69 @@ interface ResponseUser {
 interface User {
     name?: string
     age: number
+} */
+
+
+
+
+
+
+
+class User {
+    readonly id: number //不改变id 
+    // public name: string
+    oAge: number
+    gender: "男" | "女" = "男"
+    pid?: string // 相当于字符和undefined
+
+
+    private _publishNumber: number = 3;  //每天一共可以发多少篇文章
+    private _curNumber: number = 0;  // 当前可以发布的文章数量
+
+    constructor(public name:string, age:number) {  // 语法糖，不加public 不知道是属性还是参数 算是简写模式
+        this.id = Math.random();
+        // this.name = name;
+        this.oAge = age;
+    }
+
+    publish(title:string) {
+        if (this._curNumber < this._publishNumber) {
+            console.log("发布一篇文章：" + title);
+            this._curNumber++;
+        } else {
+            console.log("你今日发布的文章数量已达到上线！")
+        }
+    }
+
+    set age(value:number) {
+        if (value < 0) {
+            this.oAge = 0;
+        } else {
+            this.oAge = value;
+        }
+    }
+
+    get age() {
+        return Math.floor(this.oAge);
+    }
 }
+
+
+
+const u = new User("aa", 2.3);
+u.publish("ddd");
+u.publish("ddd");
+u.publish("ddd");
+u.publish("ddd");
+// u.curNumber = 33;
+// u.name = "sdda"
+// console.log(u)
+// u.publishNumber = 1000
+
+
+u.age = -2
+console.log(u.age)
+// console.log(u);
+
+
+console.log(u)
