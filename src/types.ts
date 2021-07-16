@@ -34,5 +34,3 @@ export interface NormalCard extends Card {
 export interface Joker extends Card {
     type: "big" | "small"
 }
-
-console.log(NormalCard)
